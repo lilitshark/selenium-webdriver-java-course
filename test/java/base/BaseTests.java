@@ -24,27 +24,11 @@ public class BaseTests {
         driver.get("https://the-internet.herokuapp.com/");
 
         homePage = new HomePage(driver);
-
-        //to-delete
-        //driver.manage().window().setSize(new Dimension(375, 812));
-
-        //WebElement inputsLink = driver.findElement(By.linkText("Shifting Content"));
-        //inputsLink.click();
-        //WebElement inputsLink2 = driver.findElement(By.linkText("Example 1: Menu Element"));
-        //inputsLink2.click();
-
-        //List<WebElement> links = driver.findElements(By.tagName("li"));
-        //System.out.println("Number of table columns are: " + links.size());
     }
 
     @AfterClass
     public void tearDown(){
         driver.quit();
     }
-
-/*    public static void main(String[] args) {
-        BaseTests test = new BaseTests();
-        test.setUp();
-}*/
 
 }

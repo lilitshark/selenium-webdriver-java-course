@@ -18,8 +18,6 @@ public class ForgotPasswordTests extends BaseTests {
 
         EmailSentPage enterEmailPage = forgotPasswordPage.clickRetrievePasswordButton();
 
-        //assertTrue(enterEmailPage.getMessage().contains("Your e-mail's been sent!"),
-        //        "Password Recovery confirmation message does not match");
         assertEquals(enterEmailPage.getMessage(), "Your e-mail's been sent!",
                 "Password Recovery confirmation message does not match");
     }
