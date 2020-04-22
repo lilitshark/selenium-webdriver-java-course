@@ -17,15 +17,11 @@ public class BaseTests {
     protected HomePage homePage;
 
     @BeforeClass
-    public void setUp(){
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/");
         homePage = new HomePage(driver);
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Hey Corona!");
     }
 
     @AfterClass
