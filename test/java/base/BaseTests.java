@@ -9,7 +9,9 @@ import org.testng.annotations.*;
 import pages.HomePage;
 
 import java.sql.SQLOutput;
+import java.sql.Time;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTests {
 
@@ -20,13 +22,16 @@ public class BaseTests {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
+        //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         goHome();
-        homePage = new HomePage(driver);
     }
 
     @BeforeMethod
     public void goHome(){
         driver.get("https://the-internet.herokuapp.com/");
+        homePage = new HomePage(driver);
     }
 
     @AfterClass
