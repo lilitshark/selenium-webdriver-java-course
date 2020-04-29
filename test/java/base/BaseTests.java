@@ -1,5 +1,6 @@
 package base;
 
+import com.google.common.io.Files;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,8 +10,12 @@ import org.testng.annotations.*;
 import pages.HomePage;
 import untils.WindowManager;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +47,23 @@ public class BaseTests {
 
     public WindowManager getWindowManager(){
         return new WindowManager(driver);
+    }
+
+    @AfterMethod
+    public void recordFailure(ITestResult result){
+        if (ITestResult.FAILURE == result.getStatus()) {
+            var camera = (TakesScreenshot) driver;
+            String timestamp = new SimpleDateFormat("yyyy_MM_dd_hh_mm").format(new Date());
+
+            File screenshot = camera.getScreenshotAs(OutputType.FILE);
+            try {
+                Files.move(screenshot, new File("resources/screenshots/" +
+                        result.getName() + " - " + timestamp + ".png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Screenshot taken: " + screenshot.getAbsolutePath());
+        }
     }
 
 }
