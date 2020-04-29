@@ -7,6 +7,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.HomePage;
+import untils.WindowManager;
 
 import java.sql.SQLOutput;
 import java.sql.Time;
@@ -37,6 +38,10 @@ public class BaseTests {
     @AfterClass
     public void tearDown(){
         driver.quit();
+    }
+
+    public WindowManager getWindowManager(){
+        return new WindowManager(driver);
     }
 
 }
